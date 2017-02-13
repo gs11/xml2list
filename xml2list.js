@@ -1,6 +1,3 @@
-// TODO: XML parsing using jQuery
-// TODO: Print attributes
-
 $(document).ready(function () {
     setTextAreasHeight();
     
