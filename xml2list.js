@@ -34,20 +34,24 @@ function xml2list() {
         $("#xmlTagListTextArea").val("Please enter well formed XML");
     } else {
         var currentPath = "/" + xmlDoc.firstChild.nodeName.replace(xmlDoc.firstChild.prefix + ":", "");
-        traverseAndPrintPath(xmlDoc.firstChild, currentPath, $("#printAllOccurrences").is(':checked'));
+        traverseAndPrintPath(xmlDoc.firstChild, currentPath, $("#printAllOccurrences").is(':checked'), $("#includeNamespacePrefixes").is(':checked'));
     }
 }
 
-function traverseAndPrintPath(xmlNode, currentPath, printAllOccurrences) {
+function traverseAndPrintPath(xmlNode, currentPath, printAllOccurrences, includeNamespacePrefixes) {
     for (var i = 0; i < xmlNode.children.length; i++) {
         var childNode = xmlNode.children[i];
 
         if(i == 0 || printAllOccurrences || childNode.nodeName != xmlNode.children[i - 1].nodeName) {
             // Remove namespace prefix
-            var newPath = currentPath + "/" + childNode.nodeName.replace(childNode.prefix + ":", "");
+            if(includeNamespacePrefixes) {
+                var newPath = currentPath + "/" + childNode.nodeName;              
+            } else {
+                var newPath = currentPath + "/" + childNode.nodeName.replace(childNode.prefix + ":", "");
+            }
 
             // Recurse
-            traverseAndPrintPath(childNode, newPath, printAllOccurrences);
+            traverseAndPrintPath(childNode, newPath, printAllOccurrences, includeNamespacePrefixes);
         }
     }
     if(xmlNode.children.length == 0) {
