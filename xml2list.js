@@ -39,6 +39,10 @@ function xml2list() {
 }
 
 function traverseAndPrintPath(xmlNode, currentPath, printAllOccurrences, includeNamespacePrefixes) {
+    var y;
+    for (y = 0; y < xmlNode.attributes.length; y++) {
+        $("#xmlTagListTextArea").val($("#xmlTagListTextArea").val() + currentPath + "/@" + xmlNode.attributes[y].name + "\n");
+    }
     for (var i = 0; i < xmlNode.children.length; i++) {
         var childNode = xmlNode.children[i];
 
