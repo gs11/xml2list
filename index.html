@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv=Content-Type content="text/html; charset=utf-8">
+    <title>xml2list</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script language="javascript" type="text/javascript" src="xml2list.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h3>Convert XML Data to XML Tag list</h3>
+      
+      <ul class="nav nav-tabs">
+        <li class="active">
+          <a href="#xmlData">XML Data</a>
+        </li>
+        <li id="xmlTagListNav">
+          <a href="#xmlTagList">XML Tag list</a>
+        </li>
+        <li class="pull-right">
+          Print all occurrences of tags
+          <input type="checkbox" id="printAllOccurrences">
+          <button class="btn btn-success" id="convert">Convert</button>
+        </li>
+      </ul>
+
+      <div class="tab-content">
+        <div id="xmlData" class="tab-pane fade in active">
+          <textarea class="form-control" id="xmlDataTextArea"></textarea>
+        </div>
+        <div id="xmlTagList" class="tab-pane fade">
+          <textarea class="form-control" id="xmlTagListTextArea"></textarea>
+        </div>
+      </div>
+      
+    </div>
+  </body>
+</html>
