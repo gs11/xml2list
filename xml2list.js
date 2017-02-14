@@ -38,7 +38,11 @@ function xml2list() {
 function traverseAndPrintPath(xmlNode, currentPath, printAllOccurrences, includeNamespacePrefixes) {
     var y;
     for (y = 0; y < xmlNode.attributes.length; y++) {
-        $("#xmlTagListTextArea").val($("#xmlTagListTextArea").val() + currentPath + "/@" + xmlNode.attributes[y].name + "\n");
+        if(includeNamespacePrefixes) {
+            $("#xmlTagListTextArea").val($("#xmlTagListTextArea").val() + currentPath + "/@" + xmlNode.attributes[y].name + "\n");
+        } else {
+            $("#xmlTagListTextArea").val($("#xmlTagListTextArea").val() + currentPath + "/@" + xmlNode.attributes[y].name.replace(xmlNode.attributes[y].prefix + ":", "") + "\n");
+        }
     }
     for (var i = 0; i < xmlNode.children.length; i++) {
         var childNode = xmlNode.children[i];
