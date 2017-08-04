@@ -1,19 +1,38 @@
 $(document).ready(function () {
     setTextAreasHeight();
     
-    $(".nav-tabs a").click(function(){
-        $(this).tab('show');
+    $(".tabs a").click(function(){
+        var tab = $(this).attr('id');
+        if(tab == "xmlDataLink") {
+            showXmlData();
+        } else {
+            showXmlTagList();
+        }
     });
     
     $("#convert").click(function() {
         xml2list();
-        $('.nav-tabs a[href="#xmlTagList"]').tab('show');
+        showXmlTagList();
     });
     
     $(window).resize(function() {
         setTextAreasHeight();
     });
 });
+
+function showXmlData() {
+    $("#xmlData").removeClass("is-hidden");
+    $("#xmlTagList").addClass("is-hidden");
+    $("#xmlDataTab").addClass("is-active");
+    $("#xmlTagListTab").removeClass("is-active");
+}
+
+function showXmlTagList() {
+    $("#xmlData").addClass("is-hidden");
+    $("#xmlTagList").removeClass("is-hidden");
+    $("#xmlDataTab").removeClass("is-active");
+    $("#xmlTagListTab").addClass("is-active");
+}
 
 function setTextAreasHeight() {
     $("#xmlDataTextArea").attr('style', 'height:' + (window.innerHeight - 130) + 'px');
